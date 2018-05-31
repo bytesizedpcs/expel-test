@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import '../App.css';
 
+// Component for the number display
 class Display extends Component {
+
   render () {
     return (
-      <input type="text" value={this.props.result} disabled="true" />
+      <input type="text" className="display" value={this.props.result} disabled="true" />
     )
   }
 }
 
+// Component for the number and modifier buttons
 class Button extends Component {
 
   render () {
@@ -17,37 +21,33 @@ class Button extends Component {
   }
 }
 
+// Component for all buttons
 class ButtonPanel extends Component {
+
   render () {
+
+    const buttonLabels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '+', '-', '/', '*', '.', '=', 'C'];
+
     return (
       <div className="button-panel">
-        <Button label="0" handleClick={this.props.handleClick.bind(null, '0')}/>
-        <Button label="1" handleClick={this.props.handleClick.bind(null, '1')}/>
-        <Button label="2" handleClick={this.props.handleClick.bind(null, '2')}/>
-        <Button label="3" handleClick={this.props.handleClick.bind(null, '3')}/>
-        <Button label="4" handleClick={this.props.handleClick.bind(null, '4')}/>
-        <Button label="5" handleClick={this.props.handleClick.bind(null, '5')}/>
-        <Button label="6" handleClick={this.props.handleClick.bind(null, '6')}/>
-        <Button label="7" handleClick={this.props.handleClick.bind(null, '7')}/>
-        <Button label="8" handleClick={this.props.handleClick.bind(null, '8')}/>
-        <Button label="9" handleClick={this.props.handleClick.bind(null, '9')}/>
-        <Button label="+" handleClick={this.props.handleClick.bind(null, '+')}/>
-        <Button label="-" handleClick={this.props.handleClick.bind(null, '-')}/>
-        <Button label="/" handleClick={this.props.handleClick.bind(null, '/')}/>
-        <Button label="*" handleClick={this.props.handleClick.bind(null, '*')}/>
-        <Button label="=" handleClick={this.props.handleClick.bind(null, '=')}/>
-        <Button label="C" handleClick={this.props.handleClick.bind(null, 'C')}/>
-        <Button label="." handleClick={this.props.handleClick.bind(null, '.')}/>
-     </div>
+        {buttonLabels.map(label => {
+          return <Button label={label} handleClick={this.props.handleClick.bind(null, label)} />
+        })}
+      </div>
     )
   }
 }
 
+// Component for encompassing all components
 class Calculator extends Component {
 
   render () {
     return (
       <div className="Calculator">
+        {/**
+          Display component needs result from state
+          ButtonPanel needs handleClick method passed down to each button
+        */}
         <Display result={this.props.result} />
         <ButtonPanel handleClick={this.props.handleClick} />
       </div>

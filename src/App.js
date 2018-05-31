@@ -8,20 +8,19 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      done: false,
-      numbers: [],
-      modifiers: [],
       result: '',
     }
 
     this.handleClick = this.handleClick.bind(this);
   }
 
+  /**
+   * Handles the clicks for all buttons
+   * Uses eval(), which should not be used outside of a small context
+   * Such as this, prone to XSS attacks in certain situations
+   * @param {*} value 
+   */
   handleClick(value) {
-    this.setState(prevState => ({
-      numbers: [...this.state.numbers, value],
-      result: prevState.result + value,
-    }))
 
     switch (value) {
       case '=' : {
@@ -31,6 +30,14 @@ class App extends Component {
       }
       case 'C': {
         this.setState({ result: '' })
+      }
+      default: {
+        if (value === 'C') {
+          value = '';
+        }
+        this.setState(prevState => ({
+          result: prevState.result + value,
+        }))
       }
     }
 

@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=PT+Sans');
+
 .App {
   text-align: center;
+  font-family: 'PT Sans', sans-serif;
 }
 
 .App-logo {
@@ -21,6 +24,42 @@
 .App-intro {
   font-size: large;
 }
+
+.Calculator {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  margin: 20%;
+}
+
+.display {
+  height: 50px;
+  width: 40%;
+  margin-bottom: 10px;
+  border: 1px solid;
+  border-radius: 3px;
+  font-size: 45px;
+}
+
+.button-panel {
+  width: 40%;
+  margin: auto;
+}
+
+button {
+  height: 30px;
+  width: calc(100% * (1/8.5) - 10px - 1px);
+  margin: 1px;
+  border: 1px solid;
+  border-radius: 3px;
+  font-size: 15px;
+}
+
+button:active {
+  background-color: black;
+  color: white;
+}
+
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
